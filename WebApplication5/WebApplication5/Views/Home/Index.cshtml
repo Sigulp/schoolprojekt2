@@ -1,0 +1,210 @@
+﻿@model WebApplication5.Models.GoodViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div>
+    <h2>All Products</h2>
+    <ul id="products" />
+</div>
+<div>
+    <h2>Search by ID</h2>
+    <input type="text" id="prodId" size="5" />
+
+    <p id="product" />
+</div>
+
+@*<form>
+    <input id="iName" name="txtaaaName" type="text" value="notnow" />
+    <input id="iCategory" name="txtaaaName" type="text" value="notnow" />
+    <input id="iPrice" name="txtaaaName" type="text" value="notnow" />
+    <input type="button" value="Search" id="btnSend" />
+</form>*@
+
+<form id="form1" method="post" action="../Home/AddProductToList"
+          enctype="application/x-www-form-urlencoded">
+        <div>
+            <label for="Name">iName</label>
+        </div>
+        <div>
+            <input id="iName" name="Name" type="text" />
+        </div>
+        <div>
+            <label for="Category">iCategory</label>
+        </div>
+        <div>
+            <input id="iCategory" name="Category" type="text" />
+        </div>
+
+        <div>
+            <label for="Price">iPrice</label>
+        </div>
+        <div>
+            <input id="iPrice" name="Price" type="text" />
+        </div>
+        <div>
+            <input type="submit" value="btnSubmit" id="btnSubmit" />
+        </div>
+    </form>
+
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Test Data from API
+    </div>   <!--en dof panel-heading -->
+    <div class="panel-body">
+        <table class="table table-bordered" id="Table">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>   <!--end of table-row -->
+        </table>   <!--end of table -->
+    </div> <!--end of Panel-body -->
+</div> <!--end of Panel -->
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "../Home/GetData",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                //alert(JSON.stringify(data));
+                $("#DIV").html('');
+                var DIV = '';
+                $.each(data, function (i, item) {
+                    var rows = "<tr>" +
+                        "<td id='Id'>" + item.Id + "</td>" +
+                        "<td id='Name'>" + item.Name + "</td>" +
+                        "<td id='Category'>" + item.Category + "</td>" +
+                        "<td id='Price'>" + item.Price + "</td>" +
+                        "</tr>";
+                    $('#Table').append(rows);
+                }); //End of foreach Loop
+                console.log(data);
+            }, //End of AJAX Success function
+
+            failure: function (data) {
+                alert("fail");
+            }, //End of AJAX failure function
+            error: function (data) {
+                alert("error");
+            } //End of AJAX error function
+
+        });
+    });
+
+    //var dataJSON = { name: G };
+
+    //$('#btnSend').bind("click", GeneralPost);
+    //function GeneralPost() {
+    //    $.ajax({
+    //        type: 'POST',
+    //        url: '../Home/AddProductToList',
+    //        data: JSON.stringify(dataJSON),
+    //        contentType: 'application/json; charset=utf-8',
+    //        dataType: 'json'
+    //    });
+    //}
+
+    $(document).ready(function () {
+        $("#btnSubmit").click(sendRegistration);
+    });
+
+    function sendRegistration() {
+        var things = [
+            { id: 1, color: 'yellow' },
+            { id: 2, color: 'blue' },
+            { id: 3, color: 'red' }
+        ];
+
+        console.log(things);
+        $.ajax({
+            url: "../Home/AddProductToList",
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(things),
+            success: function (result) {
+                var jEl = $("#divMessage");
+                jEl.html(result.d).fadeIn(1000);
+                setTimeout(function () { jEl.fadeOut(1000) }, 5000);
+            },
+            error: function (xhr, status) {
+                alert("An error occurred: " + status);
+            }
+        });
+    }
+</script>
+@*<script>
+        $(document).ready(function () {
+            // after the page elements are all loaded, then run the script
+            // Set the input field with unique ID #email to a value
+
+            //$("#txtName").val('someone@test.com');
+
+            // Set the input field with unique ID #name
+            $.ajax({
+                type: "GET",
+                url: "../Home/GetData2",
+                success: function (data) {
+                    $("#txtName").val(data);
+                    var prod = new Product();
+                },
+                error: function (result) {
+                    console.log("asd");
+                }
+            });
+
+        });
+
+        var uri = 'Api/GetAllProducts';
+        //$.ajax({
+        //    type: "GET",
+        //    url: "ProductsController/GetAllProducts",
+        //    contentType: "application/json"
+        //}).done(function (res) {
+        //    console.log('res', res);
+        //    // Do something with the result :)
+        //});
+
+        $(function () {
+            $('#btnSend').click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "../Home/GetData",
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (result) {
+                        console.log("asd");
+                    }
+                });
+            })
+        });
+
+        function formatItem(item) {
+            return item.Name + ': $' + item.Price;
+        }
+
+        function find() {
+            var id = $('#prodId').val();
+            $.getJSON(uri + '/' + id)
+                .done(function (data) {
+                    $('#product').text(formatItem(data));
+                })
+                .fail(function (jqXHR, textStatus, err) {
+                    $('#product').text('Error: ' + err);
+                });
+        }
+    </script>*@
+
+
+
