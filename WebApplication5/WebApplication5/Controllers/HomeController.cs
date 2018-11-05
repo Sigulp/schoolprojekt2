@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication5.Models;
+using SchoolProjekt.FE.Models;
 using System.Net;
 using System.Web.Http;
+using SchoolProjekt.BE.Services;
+using SchoolProjekt.BE;
 
-namespace WebApplication5.Controllers
+
+namespace SchoolProjekt.FE.Controllers
 {
     public class HomeController : Controller
     {
@@ -53,26 +56,13 @@ namespace WebApplication5.Controllers
 
         
 
-        public JsonResult GetData()
+        public async Task<JsonResult> GetData()
         {
-            List<Product> productList = new List<Product>();
-            Product product = new Product()
-            {
-                Id = 1,
-                Category = "category",
-                Name = "name",
-                Price = 1
-            };
+            var service = new HomeService();
 
-            Product product1 = new Product()
-            {
-                Id = 1,
-                Category = "category",
-                Name = "name",
-                Price = 1
-            };
-            productList.Add(product);
-            productList.Add(product1);
+            var productList = await service.GetProducts();
+            
+
             var returndata = productList;
 
             return Json(returndata, JsonRequestBehavior.AllowGet);

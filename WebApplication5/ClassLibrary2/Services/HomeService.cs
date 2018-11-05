@@ -1,13 +1,14 @@
-﻿using SchoolProjekt.BE.DTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
+using SchoolProjekt.BE.DTO;
 
-namespace ClassLibrary2
+namespace SchoolProjekt.BE.Services
 {
-    public class Class1
+    public class HomeService
     {
-        public async Task<List<ProductDto>> GetProduct2s()
+        public async Task<List<ProductDto>> GetProducts()
         {
             List<ProductDto> productList = new List<ProductDto>();
             ProductDto product = new ProductDto()

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication5", "WebApplication5\WebApplication5.csproj", "{7A24A0AD-C5A2-47FA-AE72-893FA63D43DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolProjekt.FE", "WebApplication5\SchoolProjekt.FE.csproj", "{7A24A0AD-C5A2-47FA-AE72-893FA63D43DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary2", "ClassLibrary2\ClassLibrary2.csproj", "{BACF1726-BEE0-4629-956D-EB310368095E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolProjekt.BE", "ClassLibrary2\SchoolProjekt.BE.csproj", "{BACF1726-BEE0-4629-956D-EB310368095E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

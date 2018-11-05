@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication5.Models;
+using SchoolProjekt.FE.Models;
 using System.Net;
 using System.Web.Http;
 
-namespace WebApplication5.Controllers
+namespace SchoolProjekt.FE.Controllers
 {
     public class ProductsController : ApiController
     {
